@@ -199,7 +199,44 @@ def plot_sales(dataset):
 
     plt.tight_layout()
 
+    plt.savefig("resultados/grafico_ventas.png")
+
     plt.show()
 
 
 
+#guardar resultados
+def save_results(dataset):
+    with open("resultados/resultados.txt", "w") as f:
+
+        # Ventas totales
+        total = sum(dataset["sales_amount"])
+        f.write(f"Ventas totales: {total}
+")
+
+        # Promedio
+        promedio = total / len(dataset)
+        f.write(f"Promedio de ventas: {promedio:.2f}
+")
+
+        # Mejor día
+        max_ventas = max(dataset["sales_amount"])
+        for i in range(len(dataset)):
+            if dataset["sales_amount"][i] == max_ventas:
+                fecha = dataset["sales_date"][i]
+                fecha_formateada = format_date(fecha)
+                f.write(f"Día con más ventas: {fecha_formateada} ({max_ventas})
+")
+                break
+
+        # Ventas por fecha
+        f.write("
+Ventas por fecha:
+")
+        for i in range(len(dataset)):
+            fecha = format_date(dataset["sales_date"][i])
+            ventas = dataset["sales_amount"][i]
+            f.write(f"{fecha}: {ventas}
+")
+
+    print("Resultados guardados en resultados/resultados.txt")
