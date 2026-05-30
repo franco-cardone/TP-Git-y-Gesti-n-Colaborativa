@@ -137,3 +137,69 @@ Ventas por fecha:")
 
 
 
+# Gráfico de ventas
+
+def plot_sales(dataset):
+
+    #variables a operar.
+
+    fechas = dataset["sales_date"]
+
+    ventas = dataset["sales_amount"]
+
+
+    # Promedio
+
+    promedio = sum(ventas) / len(ventas)
+
+
+    # Día máximo
+
+    max_ventas = max(ventas)
+
+    indice_max = ventas.idxmax()
+
+    fecha_max = fechas[indice_max]
+
+
+    #construcción del gráfico.
+
+    plt.figure()
+
+
+    # Línea principal
+
+    plt.plot(fechas, ventas, marker='o', label="Ventas diarias")
+
+
+    # Línea de promedio
+
+    plt.axhline(y=promedio, linestyle='--', label="Promedio")
+
+
+    # Punto máximo
+
+    plt.scatter(fecha_max, max_ventas, color='red', label="Máximo")
+
+
+    #etiquetas de ejes X e Y, Título.
+
+    plt.xlabel("Fecha")
+
+    plt.ylabel("Ventas")
+
+    plt.title("Evolución de ventas")
+
+    plt.xticks(rotation=45)
+
+
+    #formateado final y salida por pantalla.
+
+    plt.legend()
+
+    plt.tight_layout()
+
+    plt.show()
+
+
+
