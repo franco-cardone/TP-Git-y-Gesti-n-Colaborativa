@@ -69,3 +69,71 @@ def format_date(date_str):
 
 
 
+# Ventas totales
+
+def total_sales(dataset):
+
+    total = sum(dataset["sales_amount"])
+
+    print(f"Ventas totales: {total}")
+
+
+
+# Promedio de ventas
+
+def average_sales(dataset):
+
+    total = sum(dataset["sales_amount"])
+
+    cantidad = len(dataset)
+
+    promedio = total / cantidad
+
+
+    print(f"Promedio de ventas: {promedio:.2f}")
+
+
+
+# Día con más ventas
+
+def best_day(dataset):
+
+    max_ventas = max(dataset["sales_amount"])
+
+
+    #búsqueda de la fecha correspondiente al día con más ventas y salida por pantalla.
+
+    for i in range(len(dataset)):
+
+        if dataset["sales_amount"][i] == max_ventas:
+
+            fecha = dataset["sales_date"][i]
+
+            fecha_formateada = format_date(fecha)
+
+
+            print(f"Día con más ventas: {fecha_formateada} ({max_ventas})")
+
+            break
+
+
+
+# Ventas por fecha
+
+def sales_by_date(dataset):
+
+    print("
+Ventas por fecha:")
+
+
+    for i in range(len(dataset)):
+
+        fecha = format_date(dataset["sales_date"][i])
+
+        ventas = dataset["sales_amount"][i]
+
+
+        print(f"{fecha}: {ventas}")
+
+
+
