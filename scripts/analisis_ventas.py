@@ -240,3 +240,18 @@ Ventas por fecha:
 ")
 
     print("Resultados guardados en resultados/resultados.txt")
+
+# =========================
+#Ejecución principal del script.
+# =========================
+#variable para almasenar dataset, df = dataframe.
+df = load_data()
+
+#solo se ejecuta si el dataset está cargado.
+if df is not None:
+    total_sales(df)
+    average_sales(df)
+    best_day(df)
+    sales_by_date(df)
+    plot_sales(df)
+    save_results(df)
